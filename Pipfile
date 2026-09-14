@@ -17,6 +17,8 @@ flask-bcrypt = "1.0.1"
 flask-jwt-extended = "*"
 flask-cors = "*"
 python-dotenv = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 pytest = "7.2.0"
