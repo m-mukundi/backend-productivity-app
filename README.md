@@ -116,32 +116,10 @@ strings).
 | PATCH  | `/tasks/<id>`                              | Partially update a task (`title`/`description`/`status`). Same `404`/`403` ownership rules as above.                                                                                   |
 | DELETE | `/tasks/<id>`                              | Delete a task. Returns `204`. Same `404`/`403` ownership rules as above.                                                                                                               |
 
-## Deployment (Render)
+## Deployment
 
-This repo is ready to deploy to [Render](https://render.com) as a Blueprint:
+Live at: **https://backend-productivity-app-jke7.onrender.com**
 
-1. Push this repo to GitHub.
-2. In the Render dashboard, choose **New > Blueprint** and point it at the repo.
-   Render will read [`render.yaml`](./render.yaml) and provision:
-   - a free Postgres database (`backend-productivity-db`)
-   - a web service that installs dependencies, runs `flask db upgrade`
-     (applying migrations) on every deploy, then starts the API with
-     `gunicorn app:app` (see [`Procfile`](./Procfile))
-   - `DATABASE_URL` wired automatically from the database to the web
-     service, plus auto-generated `JWT_SECRET_KEY`/`SECRET_KEY` values
-3. After the first deploy, seed the database from your machine by running
-   `pipenv run python seed.py` with `DATABASE_URL` set to the value shown
-   on the Render Postgres dashboard (or open a Render shell on the web
-   service and run `python seed.py` there).
-4. Update the frontend client's API base URL / proxy to point at the
-   Render service URL instead of `localhost:5555`.
-
-Live URL: _add once deployed_.
-
-Notes:
-- SQLite is fine for local development but is **not** used in production —
-  `render.yaml` provisions Postgres and `config.py` normalizes Render's
-  `postgres://` connection string to the `postgresql://` scheme SQLAlchemy
-  requires.
-- `gunicorn` only runs on Linux/macOS (no Windows support), so continue
-  using `pipenv run flask run` for local development on Windows.
+Point a client at this URL instead of `localhost:5555` to use the deployed
+API (e.g. update the frontend's API base URL / proxy setting). All endpoints
+listed above work the same way against this URL.
