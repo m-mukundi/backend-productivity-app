@@ -1,3 +1,6 @@
+# Tests (not part of the submitted repo)
+tests/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -60,6 +63,8 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+app.db
+instance/
 
 # Flask stuff:
 instance/
